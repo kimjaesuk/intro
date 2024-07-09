@@ -2,32 +2,27 @@ package com.ohgiraffers.section03.projection;
 
 import jakarta.persistence.*;
 
-@Entity(name = "bidirection_men")
+@Entity(name = "bidirection_menu")
 @Table(name = "tbl_menu")
-public class BIDirectionMenu {
+public class BiDirectionMenu {
 
     @Id
     @Column(name = "menu_code")
     private int menuCode;
-
     @Column(name = "menu_name")
     private String menuName;
-
     @Column(name = "menu_price")
     private int menuPrice;
-
-
     @ManyToOne
     @JoinColumn(name = "category_code")
     private BiDirectionCategory categoryCode;
-
     @Column(name = "orderable_status")
     private String orderableStatus;
 
-    public BIDirectionMenu() {
+    public BiDirectionMenu() {
     }
 
-    public BIDirectionMenu(int menuCode, String menuName, int menuPrice, BiDirectionCategory categoryCode, String orderableStatus) {
+    public BiDirectionMenu(int menuCode, String menuName, int menuPrice, BiDirectionCategory categoryCode, String orderableStatus) {
         this.menuCode = menuCode;
         this.menuName = menuName;
         this.menuPrice = menuPrice;

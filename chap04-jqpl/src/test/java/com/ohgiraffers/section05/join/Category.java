@@ -1,13 +1,13 @@
-package com.ohgiraffers.section03.projection;
+package com.ohgiraffers.section05.join;
 
 import jakarta.persistence.*;
-import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-@Entity(name = "bidirection_category")
+@Entity(name = "category_section05")
 @Table(name = "tbl_category")
-public class BiDirectionCategory {
+public class Category {
+
     @Id
     @Column(name = "category_code")
     private int categoryCode;
@@ -19,12 +19,12 @@ public class BiDirectionCategory {
     private Integer refCategoryCode;
 
     @OneToMany(mappedBy = "categoryCode")
-    private List<BiDirectionMenu> menuList;
+    private List<Menu> menuList;
 
-    public BiDirectionCategory() {
+    public Category() {
     }
 
-    public BiDirectionCategory(int categoryCode, String categoryName, Integer refCategoryCode, List<BiDirectionMenu> menuList) {
+    public Category(int categoryCode, String categoryName, Integer refCategoryCode, List<Menu> menuList) {
         this.categoryCode = categoryCode;
         this.categoryName = categoryName;
         this.refCategoryCode = refCategoryCode;
@@ -55,17 +55,17 @@ public class BiDirectionCategory {
         this.refCategoryCode = refCategoryCode;
     }
 
-    public List<BiDirectionMenu> getMenuList() {
+    public List<Menu> getMenuList() {
         return menuList;
     }
 
-    public void setMenuList(List<BiDirectionMenu> menuList) {
+    public void setMenuList(List<Menu> menuList) {
         this.menuList = menuList;
     }
 
     @Override
     public String toString() {
-        return "BiDirectionCategory{" +
+        return "Category{" +
                 "categoryCode=" + categoryCode +
                 ", categoryName='" + categoryName + '\'' +
                 ", refCategoryCode=" + refCategoryCode +

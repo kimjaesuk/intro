@@ -1,9 +1,10 @@
 package com.ohgiraffers.section03.projection;
 
 public class CategoryInfo {
-    private int categoryCode;
 
+    private int categoryCode;
     private String categoryName;
+
 
     public CategoryInfo() {
     }

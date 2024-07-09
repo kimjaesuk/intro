@@ -1,4 +1,4 @@
-package com.ohgiraffers.section02.parameter;
+package com.ohgiraffers.section06.subquery;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -6,8 +6,11 @@ import jakarta.persistence.Persistence;
 import org.junit.jupiter.api.*;
 
 import java.util.List;
+import java.util.stream.Stream;
 
-public class ParameterBindingTests {
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+public class SubQueryTests {
 
     private static EntityManagerFactory entityManagerFactory;
     private EntityManager entityManager;
@@ -28,38 +31,23 @@ public class ParameterBindingTests {
     public static void closeFactory(){
         entityManagerFactory.close();
     }
-
-
     @Test
-    public void 이름_기준_파라미터_바인딩_메뉴_목록_조회_테스트(){
-
-        String menuName = "한우딸기국밥";
-        String jpql = "SELECT m FROM menu_section02 m WHERE m.menuName = :menuName";
-
-        List<Menu> menuList = entityManager.createQuery(jpql, Menu.class)
-                .setParameter("menuName", menuName)
-                .getResultList();
-
-        Assertions.assertNotNull(menuList);
-        menuList.forEach(System.out::println);
-    }
-
-
-    @Test
-    public void 위치_기준_파라미터_바인딩_메뉴_목록_조회_테스트() {
+    public void 서브쿼리를_이용한_메뉴_조회_테스트() {
 
         //given
-        String menuNameParameter = "한우딸기국밥";
+        String categoryNameParameter = "한식";
 
         //when
-        String jpql = "SELECT m FROM menu_section02 m WHERE m.menuName = ?1";
-
+        String jpql = "SELECT m FROM menu_section06 m WHERE m.categoryCode "
+                + "= (SELECT c.categoryCode FROM category_section06 c WHERE c.categoryName = :categoryName)";
         List<Menu> menuList = entityManager.createQuery(jpql, Menu.class)
-                .setParameter(1, menuNameParameter)
+                .setParameter("categoryName", categoryNameParameter)
                 .getResultList();
 
         //then
         Assertions.assertNotNull(menuList);
         menuList.forEach(System.out::println);
+
     }
+
 }

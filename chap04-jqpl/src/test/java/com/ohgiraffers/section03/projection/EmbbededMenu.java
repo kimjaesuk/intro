@@ -1,33 +1,31 @@
 package com.ohgiraffers.section03.projection;
 
-
 import jakarta.persistence.*;
 
 @Entity(name = "embedded_menu")
 @Table(name = "tbl_menu")
-public class EmbbedMenu {
+public class EmbbededMenu {
+
     @Id
     @Column(name = "menu_code")
     private int menuCode;
-
     @Embedded
-    private  MenuInfo menuInfo;
-
+    private MenuInfo menuInfo;
     @Column(name = "category_code")
     private int categoryCode;
-
     @Column(name = "orderable_status")
-    private String orderavleStatus;
+    private String orderableStatus;
 
-    public EmbbedMenu() {
+    public EmbbededMenu() {
     }
 
-    public EmbbedMenu(int menuCode, MenuInfo menuInfo, int categoryCode, String orderavleStatus) {
+    public EmbbededMenu(int menuCode, MenuInfo menuInfo, int categoryCode, String orderableStatus) {
         this.menuCode = menuCode;
         this.menuInfo = menuInfo;
         this.categoryCode = categoryCode;
-        this.orderavleStatus = orderavleStatus;
+        this.orderableStatus = orderableStatus;
     }
+
 
     public int getMenuCode() {
         return menuCode;
@@ -53,12 +51,12 @@ public class EmbbedMenu {
         this.categoryCode = categoryCode;
     }
 
-    public String getOrderavleStatus() {
-        return orderavleStatus;
+    public String getOrderableStatus() {
+        return orderableStatus;
     }
 
-    public void setOrderavleStatus(String orderavleStatus) {
-        this.orderavleStatus = orderavleStatus;
+    public void setOrderableStatus(String orderableStatus) {
+        this.orderableStatus = orderableStatus;
     }
 
     @Override
@@ -67,7 +65,7 @@ public class EmbbedMenu {
                 "menuCode=" + menuCode +
                 ", menuInfo=" + menuInfo +
                 ", categoryCode=" + categoryCode +
-                ", orderavleStatus='" + orderavleStatus + '\'' +
+                ", orderableStatus='" + orderableStatus + '\'' +
                 '}';
     }
 }

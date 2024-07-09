@@ -1,30 +1,32 @@
-package com.ohgiraffers.section03.projection;
+package com.ohgiraffers.section05.join;
 
+import jakarta.persistence.*;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-@Entity(name = "menu_section03")
+@Entity(name = "menu_section05")
 @Table(name = "tbl_menu")
 public class Menu {
+
     @Id
-    @Column(name="menu_code")
+    @Column(name = "menu_code")
     private int menuCode;
-    @Column(name="menu_name")
+
+    @Column(name = "menu_name")
     private String menuName;
-    @Column(name="menu_price")
+
+    @Column(name = "menu_price")
     private int menuPrice;
-    @Column(name="category_code")
-    private int categoryCode;
-    @Column(name="orderable_status")
+
+    @ManyToOne
+    @JoinColumn(name = "category_code")
+    private Category categoryCode;
+
+    @Column(name = "orderable_status")
     private String orderableStatus;
 
-    public Menu() {}
+    public Menu() {
+    }
 
-    public Menu(int menuCode, String menuName, int menuPrice, int categoryCode, String orderableStatus) {
-        super();
+    public Menu(int menuCode, String menuName, int menuPrice, Category categoryCode, String orderableStatus) {
         this.menuCode = menuCode;
         this.menuName = menuName;
         this.menuPrice = menuPrice;
@@ -56,11 +58,11 @@ public class Menu {
         this.menuPrice = menuPrice;
     }
 
-    public int getCategoryCode() {
+    public Category getCategoryCode() {
         return categoryCode;
     }
 
-    public void setCategoryCode(int categoryCode) {
+    public void setCategoryCode(Category categoryCode) {
         this.categoryCode = categoryCode;
     }
 
@@ -74,8 +76,12 @@ public class Menu {
 
     @Override
     public String toString() {
-        return "Menu [menuCode=" + menuCode + ", menuName=" + menuName + ", menuPrice=" + menuPrice + ", categoryCode="
-                + categoryCode + ", orderableStatus=" + orderableStatus + "]";
+        return "Menu{" +
+                "menuCode=" + menuCode +
+                ", menuName='" + menuName + '\'' +
+                ", menuPrice=" + menuPrice +
+                ", categoryCode=" + categoryCode +
+                ", orderableStatus='" + orderableStatus + '\'' +
+                '}';
     }
-
 }

@@ -1,6 +1,5 @@
 package com.ohgiraffers.section03.projection;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -28,6 +27,7 @@ public class Category {
         this.categoryName = categoryName;
         this.refCategoryCode = refCategoryCode;
     }
+
 
     public int getCategoryCode() {
         return categoryCode;
