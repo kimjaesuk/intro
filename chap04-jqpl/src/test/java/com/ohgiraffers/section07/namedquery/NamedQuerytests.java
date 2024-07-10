@@ -82,7 +82,6 @@ public class NamedQuerytests {
         //then
         Assertions.assertNotNull(menuList);
         menuList.forEach(System.out::println);
-
     }
 
 }
